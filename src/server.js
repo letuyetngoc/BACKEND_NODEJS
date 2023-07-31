@@ -8,13 +8,15 @@ const webRoutes = require('./routes/web')
 const configViewEngine = require('./config/viewEngine.js')
 const connection = require('./config/database')
 
+// config req.body
+app.use(express.json()) // for json
+app.use(express.urlencoded({ extended: true })) // for form data
+
 // config template engine
 configViewEngine(app)
 
 // declare routes
-app.use('/v1', webRoutes)
-
-
+app.use('/', webRoutes)
 
 // simple query
 connection.query(

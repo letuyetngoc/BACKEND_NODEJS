@@ -2,14 +2,20 @@
 const getHomepage = (req, res) => {
     //process data
     //call models
-    res.send('Hello word! vs Ngoc Le')
+    return res.render('home.ejs')
 }
 
 const getNavbar = (req, res) => {
     res.render('navbar.ejs')
 }
 
+const postCreateUser = (req, res) => {
+    console.log('req.body=======>', req.body)
+    res.send('Create user')
+}
+
 module.exports = {
     getHomepage,
     getNavbar,
+    postCreateUser
 }
