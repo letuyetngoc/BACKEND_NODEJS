@@ -42,18 +42,38 @@
     <h2 class="title" style="text-align: center; padding: 15px 0;">List users</h2>
     <table id="user">
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>City</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Action</th>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-      </table>
+        <!-- <% for(var i=0; i<listUsers.length; i++) {%>
+            <tr>
+                <td><%= listUsers[i].id%></td> 
+                <td><%= listUsers[i].name%></td>
+                <td><%= listUsers[i].email%></td>
+                <td><%= listUsers[i].city%></td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        <% } %> -->
+
+        <% listUsers.forEach(function(user) { %>
+            <tr>
+                <td><%= user.id%></td> 
+                <td><%= user.name%></td>
+                <td><%= user.email%></td>
+                <td><%= user.city%></td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+         <% }); %> 
+    </table>
 </body>
 
 </html>
