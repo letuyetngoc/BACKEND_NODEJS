@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeJS</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/create">Edit user</a></li>
+    </ul>
+    <div class="form" style="width:500px; margin: 20px auto;">
+        <form action="/create-user" method="POST">
+            <fieldset style="padding-left:20px">
+                <legend>Create users</legend><br/><br/>
+                <div class="input-group">
+                    <label>Name: </label>
+                    <input type="text" name="username" value="<%= userId.name %>"/>
+                </div><br><br>
+                <div class="form">
+                    <div class="input-group">
+                        <label>Email: </label>
+                        <input type="text" name="email" value="<%= userId.email %>"/>
+                    </div>
+                </div><br><br>
+                <div class="form">
+                    <div class="input-group">
+                        <label>City: </label>
+                        <input type="text" name="city" value="<%= userId.city %>"/>
+                    </div>
+                </div><br><br>
+                <div class="form">
+                    <button>Submit</button>
+                </div><br/><br/>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
