@@ -1,11 +1,10 @@
-const connection = require("../config/database")
-const { getAllUsers, getUserId } = require("../services/CRUDService")
+const { getAllUsers, getUserId, updateUserById, createUser, deleteUser } = require("../services/CRUDService")
 
 const getHomepage = async (req, res) => {
     const results = await getAllUsers()
     // console.log('result', results)
 
-    return res.render('home.ejs', {listUsers: results})
+    return res.render('home.ejs', { listUsers: results })
 }
 
 const getNavbar = (req, res) => {
@@ -19,7 +18,13 @@ const getCreatePage = (req, res) => {
 const getEditPage = async (req, res) => {
     let userId = await getUserId(req.params.id)
     userId = userId?.length > 0 ? userId[0] : {}
-    res.render('edit.ejs', {userId: userId})
+    res.render('edit.ejs', { userId: userId })
+}
+
+const getDeletePage = async (req, res) => {
+    let userId = await getUserId(req.params.id)
+    userId = userId?.length > 0 ? userId[0] : {}
+    res.render('delete.ejs', { userId: userId })
 }
 
 const postCreateUser = async (req, res) => {
@@ -35,10 +40,31 @@ const postCreateUser = async (req, res) => {
     //     }
     // );
 
-    const [results, fields] = await connection.query(
-        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?)`, [email, username, city]
-    )
+    await createUser(email, username, city)
     res.send('Create user success!')
+}
+
+const postDeleteUser = async (req, res) => {
+    let { userId } = req.body
+    await deleteUser(userId)
+    res.redirect('/')
+}
+
+const postEditUser = async (req, res) => {
+    let { email, username, city, userId } = req.body
+    // connection.query(
+    //     `UPDATE Users 
+    //     SET email = ?, name = ?, city = ?  
+    //     WHERE id = ?;`,
+    //     [email, username, city],
+    //     function (err, results) {
+    //         res.send('Create user success!')
+    //         console.log(results);
+    //     }
+    // );
+    await updateUserById(email, username, city, userId)
+    // res.send('Edit user success!')
+    res.redirect('/')
 }
 
 module.exports = {
@@ -46,5 +72,8 @@ module.exports = {
     getNavbar,
     postCreateUser,
     getCreatePage,
-    getEditPage
+    getEditPage,
+    postEditUser,
+    getDeletePage,
+    postDeleteUser
 }

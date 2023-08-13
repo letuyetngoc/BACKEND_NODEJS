@@ -11,34 +11,24 @@
 <body>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/create">Create user</a></li>
+        <li><a href="/create">Delete user</a></li>
     </ul>
     <div class="form" style="width:500px; margin: 20px auto;">
-        <form action="/update-user" method="POST">
+        <form action="/delete" method="POST">
             <fieldset style="padding-left:20px">
                 <legend>Edit users</legend><br/><br/>
                 <div class="input-group" style="display: none;">
                     <label>Id: </label>
                     <input type="text" name="userId" value="<%= userId.id %>"/>
-                </div><br><br>
-                <div class="input-group">
-                    <label>Name: </label>
-                    <input type="text" name="username" value="<%= userId.name %>"/>
-                </div><br><br>
+                </div>
                 <div class="form">
                     <div class="input-group">
-                        <label>Email: </label>
+                        <label>Are you sure delete this user with email: </label>
                         <input type="text" name="email" value="<%= userId.email %>"/>
                     </div>
                 </div><br><br>
                 <div class="form">
-                    <div class="input-group">
-                        <label>City: </label>
-                        <input type="text" name="city" value="<%= userId.city %>"/>
-                    </div>
-                </div><br><br>
-                <div class="form">
-                    <button>Submit</button>
+                    <button>Confirm</button>
                 </div><br/><br/>
             </fieldset>
         </form>

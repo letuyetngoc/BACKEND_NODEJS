@@ -68,8 +68,11 @@
                 <td><%= user.email%></td>
                 <td><%= user.city%></td>
                 <td>
+                    <!-- a là method get, muốn dùng method khác thì bọc thẻ form -->
                     <a href="/edit/<%= user.id%>">Edit</a>
-                    <button>Delete</button>
+                    <form action="/delete/<%= user.id%>" method="POST">
+                        <button>Delete</button>
+                    </form>
                 </td>
             </tr>
          <% }); %> 
