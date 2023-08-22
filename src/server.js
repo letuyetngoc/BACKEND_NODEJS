@@ -18,6 +18,9 @@ configViewEngine(app)
 // declare routes
 app.use('/', webRoutes)
 
+//test connection
+connection()
+
 // simple query
 // connection.query(
 //   'select * from Users u',
