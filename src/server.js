@@ -18,17 +18,16 @@ configViewEngine(app)
 // declare routes
 app.use('/', webRoutes)
 
-//test connection
-connection()
 
-// simple query
-// connection.query(
-//   'select * from Users u',
-//   function(err, results, fields) {
-//     console.log('results ===>',results); // results contains rows returned by server
-//   }
-// );
+;(async() => {
+  //test connection
+  try {
+    await connection();
+    app.listen(port, () => {
+      console.log(`Backend zero app listening on port ${port}`)
+    })
+  } catch (error) {
+    console.log(">>> Error connect to DB", error)
+  }
+})()
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
